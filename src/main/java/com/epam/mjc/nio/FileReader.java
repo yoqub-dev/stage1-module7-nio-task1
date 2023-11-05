@@ -2,6 +2,7 @@ package com.epam.mjc.nio;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,7 +17,7 @@ public class FileReader {
         try {
             fileContent = readFileContent(file.toPath());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new UncheckedIOException(e);
         }
         Map<String , String> dataMap = parseData(fileContent);
         return createProfile(dataMap);
